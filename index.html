@@ -1,41 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 </head>
 <body>
-<h1>Interactive Quiz Title</h1>
+<div id="container">
+	<h1>Title-Interactive Quiz</h1>
 
-<!-- this will indicate the quiz section -->
-<ul>
-	<li>1</li>
-	<li>2</li>
-	<li>3</li>
-	<li>4</li>
-	<li>5</li>
-</ul>
+	<!-- this will indicate the quiz section -->
+	<ul class="question-num">
+		<li class="current-question">1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	
+	<div id="quiz-area"> 
+	
+	<div class="quiz-question">
+	<h2>Who is batman's enemy?</h2>
+	</div>
+	
+	<!-- hidden div that explains answer after click of submit button-->
+	<div class="answer-explanation">
+	<p> here is an explanation of the answer, it will contain about 50-75 words. it will appear in a section when the submits his answer</p>
+	</div>
 
-<p>Who is batman's enemy?</p>
+	<!--when submit button is clicked, correct answer will be highlighted -->
 
-<!-- hidden div that explains answer -->
-<p> here is an explanation of the answer, it will contain about 50-75 words. it will appear in a section when the submits his answer</p>
+	<ul class="answer-menu">
+		<li class="incorrect"><button class='answer-a'>a</button>Scar</li>
+		<li class="incorrect"><button class='answer-b'>b</button> Cruella De'Ville</li>
+		<li class="correct"><button class='answer-c'>c</button> Joker</li>
+		<li class="incorrect"><button class='answer-d'>d</button> Magneto</li>
+	</ul>
 
-<!--when submit button is clicked, correct answer will be highlighted -->
+	<div class="clear-fix"></div>
 
-<ul>
-	<li>A) Answer A</li>
-	<li>B) Answer B</li>
-	<li>C) Answer C</li>
-	<li>D) Answer D</li>
-</ul>
-
-<input type="submit">
-
-<h2>User Score:</h2>
-
-<!-- right panel div w/ img -->
-<div id="right-panel"></div>
-
+	<div class="scoreboard">
+		<ul>
+			<li>User Score</li>
+			<li><span class="user-score-correct">xYx</span> //// <span class="user-score-total">5</li>
+		</ul>
+		<button class="next-question">Next Question</button>
+	</div>
+	<!-- right panel div w/ img -->
+	<div id="right-panel"></div>
+</div>
 </body>
 </html>
