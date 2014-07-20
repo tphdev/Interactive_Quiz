@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<link href='http://fonts.googleapis.com/css?family=Fenix|Varela+Round' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Health-Quiz</title>
 </head>
 <body>
 <div id="container">
-	<h1>Title-Interactive Quiz</h1>
+	<h1>Your Daily Apple Health Quiz</h1>
 
 	<!-- this will indicate the quiz section -->
 	<ul class="question-num">
@@ -22,29 +23,29 @@
 	<div id="quiz-area"> 
 	
 	<div class="quiz-question">
-	<h2>Who is batman's enemy?</h2>
+	<h2>Which of these is a cruciferous vegetable?</h2>
 	</div>
 	
 	<!-- hidden div that explains answer after click of submit button-->
 	<div class="answer-explanation">
-	<p> here is an explanation of the answer, it will contain about 50-75 words. it will appear in a section when the submits his answer</p>
+	<p> hBroccoli is a member of the cabbage family of vegetables, often referred to as cruciferous, which is associated with anticancer benefits as well as reduced inflammation and higher immunity. Broccoli is also high in fiber, and a high-fiber diet can help keep blood pressure down and reduce heart-disease risk.</p>
 	</div>
 
 	<!--when submit button is clicked, correct answer will be highlighted -->
 
 	<ul class="answer-menu">
-		<li class="incorrect"><button class='answer-a'>a</button>Scar</li>
-		<li class="incorrect"><button class='answer-b'>b</button> Cruella De'Ville</li>
-		<li class="correct"><button class='answer-c'>c</button> Joker</li>
-		<li class="incorrect"><button class='answer-d'>d</button> Magneto</li>
+		<li><button class='answer-a'>a</button>&nbspTomato</li>
+		<li><button class='answer-b'>b</button>&nbspCabbage</li>
+		<li class="correct"><button class='answer-c'>c</button>&nbspBroccoli</li>
+		<li class="incorrect"><button class='answer-d'>d</button>&nbspEggplant</li>
 	</ul>
 
 	<div class="clear-fix"></div>
 
 	<div class="scoreboard">
 		<ul>
-			<li>User Score</li>
-			<li><span class="user-score-correct">xYx</span> //// <span class="user-score-total">5</li>
+			<li>User Score |&nbsp&nbsp&nbsp</li>
+			<li><span class="user-score-correct">0</span> / <span class="user-score-total">1</li>
 		</ul>
 		<button class="next-question">Next Question</button>
 	</div>
