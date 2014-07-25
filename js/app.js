@@ -18,7 +18,7 @@ var quizExplanation = [
 	, "Salmon develop their muscle mass and fat stores in order to fuel their egg production and nonstop upstream migration. Norway pioneered the ocean farming of Atlantic salmon in large offshore pens in the 1960s. Atlantic salmon has been depleted by overfishing and damage to their home rivers, so nowadays most market fish come from farms in Scandinavia and North and South America. "
 	, "Nuts tend to be high in calories and fat, but the monosaturated fat in nuts is healthier than the saturated fat in meat and dairy products. And their high omega-3-fatty-acid levels make them a go-to for heart health. A recentstudy also found that walnuts carry some of the highest antioxidant content among all nuts."
 	, "Chocolate, the cooked, sculptable paste of a South American tree seed, has been married to sugar ever since its arrival in Europe nearly 500 years ago, and is in some respects sugar’s complement. Where sugar is a single molecule purified from complex plant fluids, chocolate is a mixture of hundreds of different molecules produced by fermenting and roasting a plain bland seed."
-	, "Quinoa is a native of northern South America, and was a staple food of the Incas. Quinoa can be cooked like rice or added to soups and other liquid dishes; it’s also popped, and is ground and made into a variety of flatbreads."
+	, "Quinoa is native to northern South America, and was a staple food of the Incas. Quinoa can be cooked like rice or added to soups and other liquid dishes; it’s also popped, and is ground and made into a variety of flatbreads."
 ]
 
 var answerKey = [
@@ -107,28 +107,40 @@ for(i=0;i<4;i++){
 	$answers.eq(i).text(answerMasterList[qCounter][i]);
 	}
 
-//when user selects answer, evaluate if answer is correct
 $answerList.on("click", "button", function(){
+	
 	//disable the buttons	
 	$answerList.find('.user-option').attr('disabled', true);
 	$showExpl.slideDown(350).find('p').text(quizExplanation[qCounter]);
 	
-	//if user's user's answer is correct & if the
 	
+	//when user selects answer, evaluate if answer is correct
 	if ($(this).text()===answerKey[qCounter]){
-		//change the background color to green
+		//if correct, change selected button's background color to green
 			$(this).css({'background': 'green',
 					  "color" : '#eee'});
+			
+			//add 1 to the user score, add one to the q's asked denominator
 			uScore++
-			$userScoreTally.text(uScore)
+			$userScoreTally.text(uScore);
 			qsAsked++
-			$userScoreDenom.text(qsAsked)
+			$userScoreDenom.text(qsAsked);
+
 		} else{
+			//if incorrect, change the selectd button's background color to red
 			$(this).css({'background': 'red',
 					'color': '#eee'});
+			
+			//adds 1 to the q's asked denominater
 			qsAsked++
-			$userScoreDenom.text(qsAsked)
-		}
+			$userScoreDenom.text(qsAsked);
+
+			//identifies the correct answer in the eq, changes CSS, and displays to quiztaker
+			$answerList
+				.find('.user-option')
+				.eq(answerMasterList[qCounter].indexOf(answerKey[qCounter]))
+				.css({"background": "rgba(130, 233, 70, .7)"});
+		};
 
 		//add one to the question-counter
 		qCounter++
@@ -136,8 +148,8 @@ $answerList.on("click", "button", function(){
 		//if qcounter is larger than the length of array(ie if there are no more questions,), modify the next button
 		if (quizQuestion.length == qCounter){ 
 				console.log('quiz QUIZ OVER!');
-				$nextQuestion.text("See Your Score")			
-			}
+				$nextQuestion.text("See Your Score");			
+			};
 				
 		$nextQuestion.fadeIn(300);
 })
@@ -175,10 +187,10 @@ $nextQuestion.on("click", function(){
 		for(i=0;i<4;i++){	
 		$answers.eq(i).text(answerMasterList[qCounter][i]);
 		$nextQuestion.hide()
-		}//end for-loop
+		};//end for-loop
 						
-	} //end if-else statement
-})
+	}; //end if-else statement
+});
 
 
 

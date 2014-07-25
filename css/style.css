@@ -21,7 +21,7 @@ h1 {
 	background: rgba(215,215,215,0.5);
 	padding: 20px 10px 20px 30px;
 	font-size: 3.0em;
-	font-family: 'Varela Round', 'Geneva', 'Helvetica';
+	font-family: 'Lobster', 'Georgia', serif;
 	color: rgb(47,104,10);
 	text-shadow: 1px 1px 1px black;
 }
@@ -219,6 +219,7 @@ ul.question-num{
 		padding: 40px 0px;
 	}
 		.result-display h2{
+		font-family: 'Lobster', 'Georgia', serif;
 		font-size: 3.0em;
 		margin-bottom: 20px;
 		}
