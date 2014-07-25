@@ -8,9 +8,17 @@ $(document).ready(function(){
 var quizQuestion = [
 	"Which of these is a cruciferous vegetable?" 
 	, "Which of these fish is high in vitamin D and omega-3 fatty acids that protect your heart?"
-	, "Which of these nuts has the highest antioxidant content"
-	, "Which of these foods contains flavonol?"
+	, "Which of these nuts has the highest omega-3 and antioxidant content"
+	, "Which of these foods contains anti-oxidant flavonols that help reduce blood pressure and inflammation?"
 	, "Which of these grains is considered a complete protein?"
+];
+
+var quizExplanation = [
+	"Broccoli is a member of the cabbage family of vegetables, often referred to as cruciferous, which is associated with anticancer benefits as well as reduced inflammation and higher immunity. Broccoli is also high in fiber, and a high-fiber diet can help keep blood pressure down and reduce heart-disease risk."
+	, "Salmon develop their muscle mass and fat stores in order to fuel their egg production and nonstop upstream migration. Norway pioneered the ocean farming of Atlantic salmon in large offshore pens in the 1960s. Atlantic salmon has been depleted by overfishing and damage to their home rivers, so nowadays most market fish come from farms in Scandinavia and North and South America. "
+	, "Nuts tend to be high in calories and fat, but the monosaturated fat in nuts is healthier than the saturated fat in meat and dairy products. And their high omega-3-fatty-acid levels make them a go-to for heart health. A recentstudy also found that walnuts carry some of the highest antioxidant content among all nuts."
+	, "Chocolate, the cooked, sculptable paste of a South American tree seed, has been married to sugar ever since its arrival in Europe nearly 500 years ago, and is in some respects sugar’s complement. Where sugar is a single molecule purified from complex plant fluids, chocolate is a mixture of hundreds of different molecules produced by fermenting and roasting a plain bland seed."
+	, "Quinoa is a native of northern South America, and was a staple food of the Incas. Quinoa can be cooked like rice or added to soups and other liquid dishes; it’s also popped, and is ground and made into a variety of flatbreads."
 ]
 
 var answerKey = [
@@ -19,42 +27,42 @@ var answerKey = [
 	, "Walnuts"
 	, "Chocolate"
 	, "Quinoa"
-]
+];
 
 var answerList1 = [
 	"Tomato"
 	, "Eggplant"
 	, "Broccoli"
-	, "Cabbage"
-]
+	, "Green Beans"
+];
 
 var answerList2 = [
 	"Salmon"
 	, "Swordfish"
 	, "Shrimp"
 	, "Tuna"
-]
+];
 
 var answerList3 = [
 	"Pinenuts"
 	, "Walnuts"
 	, "Almonds"
 	, "Peanuts"
-]
+];
 
 var answerList4 = [
 	"Chocolate"
 	, "Milk"
 	, "Avocado"
 	, "Cinnamon"
-]
+];
 
 var answerList5 = [
 	"Brown Rice"
 	, "Quinoa"
 	, "Chickpeas"
 	, "Bulgur Wheat"
-]
+];
 
 var answerMasterList = [
 	answerList1
@@ -62,22 +70,22 @@ var answerMasterList = [
 	, answerList3
 	, answerList4
 	, answerList5
-]
+];
 
 
-//-------------------
+//------------------------
 //-----CSS/HTML Selectors----
 //--------------------------
 
 var $quizQuestionH2 = $('.quiz-question h2');
 var $questionNum = $('.question-num li')
 var $answers = $('.user-option');
-var $answerExpl = $('.answer-expl');
+var $showExpl = $('.show-expl');
 var $answerList = $('.answer-menu');
 var $answerButton =  $('.answer-menu .user-answer');
 var $nextQuestion = $('.next-question');
-var $userScoreTally = $('.user-score-correct')
-var $userScoreDenom = $('.user-score-total')
+var $userScoreTally = $('.user-score-correct');
+var $userScoreDenom = $('.user-score-total');
 
 
 //--------------------------
@@ -85,10 +93,12 @@ var $userScoreDenom = $('.user-score-total')
 //--------------------------
 
 //set index for  quiz question
-var qCounter = 0
-var uScore = 0
-var qsAsked = 0
+var qCounter = 0;
+var uScore = 0;
+var qsAsked = 0;
 
+//hide nextQuestion button
+$nextQuestion.hide();
 //populate initial quiz question <h2>
 $quizQuestionH2.text(quizQuestion[qCounter]);
 
@@ -100,51 +110,78 @@ for(i=0;i<4;i++){
 //when user selects answer, evaluate if answer is correct
 $answerList.on("click", "button", function(){
 	//disable the buttons	
-	$answerList.find('.user-option').attr('disabled', true)
+	$answerList.find('.user-option').attr('disabled', true);
+	$showExpl.slideDown(350).find('p').text(quizExplanation[qCounter]);
+	
+	//if user's user's answer is correct & if the
+	
+	if ($(this).text()===answerKey[qCounter]){
+		//change the background color to green
+			$(this).css({'background': 'green',
+					  "color" : '#eee'});
+			uScore++
+			$userScoreTally.text(uScore)
+			qsAsked++
+			$userScoreDenom.text(qsAsked)
+		} else{
+			$(this).css({'background': 'red',
+					'color': '#eee'});
+			qsAsked++
+			$userScoreDenom.text(qsAsked)
+		}
 
-	//add to the total-questions-asked denominator
-	qsAsked++
-	$userScoreDenom.text(qsAsked)
+		//add one to the question-counter
+		qCounter++
 
-	//evaluate the user's answer
-	if($(this).text()===answerKey[qCounter]){
-		$(this).css("background", 'green');
-		uScore++
-		$userScoreTally.text(uScore)
-	} else{
-		$(this).css("background", 'red');
-	}
-
-	console.log($(this).text())
-	console.log(answerKey[qCounter])
-
-	$nextQuestion.fadeIn(300);
+		//if qcounter is larger than the length of array(ie if there are no more questions,), modify the next button
+		if (quizQuestion.length == qCounter){ 
+				console.log('quiz QUIZ OVER!');
+				$nextQuestion.text("See Your Score")			
+			}
+				
+		$nextQuestion.fadeIn(300);
 })
-
 
 
 $nextQuestion.on("click", function(){
-//reset buttons format
-	$answerList.find('.user-option').attr('disabled', false)
-	$answerList.find('button').css('background', 'rgba(188, 200, 166, .7)')
-
-	//in the header, remove highlight class on question-number and apply class to next question-number
-	$questionNum
-		.eq(qCounter)
-		.removeClass('current-question')
-		.next().addClass('current-question')
-
-	//go to the next index in the questions array
-	qCounter++
 	
-	//populate quiz with next question
-	$quizQuestionH2.text(quizQuestion[qCounter]);
+	//if there are no more questions, show score when user clicks modified next-button
+	if (quizQuestion.length == qCounter){ 
+			var finalUserScore = $('.score-tracker').text();
+			$('.final-score').text(finalUserScore);
+			$('#final-results').slideDown(500);
+			
+	} else {
+
+		//reenable & reset formats on answer-button 
+		$answerList.find('.user-option').attr('disabled', false);
+		$answerList.find('button').css({'background': 'rgba(188, 200, 166, .7)',
+										"color": "rgb(0,87,61)"});
 	
-	//repopulate quiz with next set of answers
-	for(i=0;i<4;i++){	
-	$answers.eq(i).text(answerMasterList[qCounter][i]);
-	}
+		//hide explanation & next-question-button
+		$showExpl.slideUp(200);
+		$nextQuestion.fadeOut(200);
+		
+		//in the header, remove highlight class on question-number and apply class to next question-number
+		$questionNum
+			.eq(qCounter-1)
+			.removeClass('current-question')
+			.next().addClass('current-question');
+		
+		//populate quiz with next question
+		$quizQuestionH2.text(quizQuestion[qCounter]);
+		
+		//repopulate quiz with next set of answers
+		for(i=0;i<4;i++){	
+		$answers.eq(i).text(answerMasterList[qCounter][i]);
+		$nextQuestion.hide()
+		}//end for-loop
+						
+	} //end if-else statement
 })
+
+
+
 
 
 })//end ready
