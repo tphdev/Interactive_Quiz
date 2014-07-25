@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href='http://fonts.googleapis.com/css?family=Fenix|Varela+Round' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/style-prelim.css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Health-Quiz</title>
+</head>
+<body>
+<div id="container">
+	<h1>Your Daily Apple Health Quiz</h1>
+
+<!--..............-->
+<!-- question 1 -->
+<!--..............-->	
+<div id="question1">
+	<ul class="question-num">
+		<li class="current-question">1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	
+	<div id="quiz-area"> 
+	
+	<div class="quiz-question">
+	<h2>Question</h2>
+	</div>
+	
+	<!-- hidden div that explains answer after click of submit button-->
+	<div class="answer-expl">
+	<div class="show-expl"><p>Description Text</p></div>
+	</div>
+
+	<!--when submit button is clicked, correct answer will be highlighted -->
+
+	<ul class="answer-menu">
+		<li>
+			<button class='user-option'>a</button>
+			<!-- <span class="user-option">aaa</span> -->
+		</li>
+		<li>
+			<button class='user-option'>b</button>
+		<!-- 	<span class="">bbb</span>	 -->	
+		</li>
+		<li>
+			<button class='user-option'>c</button>
+			<!-- <span class="user-option">ccc</span>
+ -->
+		</li>
+		<li>
+			<button class='user-option'>d</button>&nbsp
+			<!-- <span class="user-option">ddd</span> -->
+		</li>
+	</ul>
+	</div> <!--end quiz area-->
+
+	<div class="clear-fix"></div>
+</div> <!--end #question-->
+
+	<div class="scoreboard">
+		<ul>
+			<li>User Score |&nbsp&nbsp&nbsp</li>
+			<li><span class="user-score-correct">0</span> / <span class="user-score-total">0</li>
+		</ul>
+	</div> <!--End 'scoreboard'-->
+
+	<!-- right panel div w/ img -->
+	<div class="next-question">Next Question</div>
+	<div id="right-panel"></div>
+</div> 
+</body>
+</html>
